@@ -2,6 +2,7 @@
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Project1.Data
@@ -26,7 +27,9 @@ namespace Project1.Data
 
         public IEnumerable<Customer> GetAll()
         {
-            throw new NotImplementedException();
+            var entities = _context.CustomerEntity.ToList();
+
+            return entities.Select(e => new Customer(e.CustomerId, e.FirstName, e.LastName));
         }
 
         public void Update(Customer customer)

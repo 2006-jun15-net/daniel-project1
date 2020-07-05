@@ -18,5 +18,8 @@ namespace Project1.Domain
             ProductID = productID;
             Amount = amount;
         }
+
+
+
     }
 }

@@ -2,6 +2,7 @@
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Project1.Data
@@ -18,7 +19,11 @@ namespace Project1.Data
 
         public void Create(OrderHistory orderHistory)
         {
-            var Entity = new OrderHistoryEntity { OrderId = orderHistory.OrderId, CustomerId = orderHistory.CustomerId, LocationId = orderHistory.LocationId, Date = orderHistory.Date, Time = orderHistory.Time };
+
+            string date = DateTime.UtcNow.ToString("MM-dd-yyyy");
+            string time = DateTime.Now.ToString("HH:mm");
+
+            var Entity = new OrderHistoryEntity { OrderId = orderHistory.OrderId, CustomerId = orderHistory.CustomerId, LocationId = orderHistory.LocationId, Date = date, Time = time };
 
             _context.OrderHistoryEntity.Add(Entity);
 
@@ -27,7 +32,9 @@ namespace Project1.Data
 
         public IEnumerable<OrderHistory> GetAll()
         {
-            throw new NotImplementedException();
+            var entities = _context.OrderHistoryEntity.ToList();
+
+            return entities.Select(e => new OrderHistory(e.OrderId, e.LocationId, e.CustomerId, e.Date, e.Time));
         }
     }
 }

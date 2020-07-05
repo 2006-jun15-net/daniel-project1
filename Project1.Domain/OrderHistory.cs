@@ -12,13 +12,13 @@ namespace Project1.Domain
         public string Date { get; set; }
         public string Time { get; set; }
 
-        public OrderHistory(int orderID, int customerID, int locationID)
+        public OrderHistory(int orderID, int customerID, int locationID, string date, string time)
         {
             OrderId = orderID;
             CustomerId = customerID;
             LocationId = locationID;
-            Date = DateTime.UtcNow.ToString("MM-dd-yyyy");
-            Time = DateTime.Now.ToString("HH:mm");
+            Date = date;
+            Time = time;
         }
     }
 }

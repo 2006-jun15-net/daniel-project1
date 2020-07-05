@@ -2,6 +2,7 @@
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Project1.Data
@@ -26,7 +27,9 @@ namespace Project1.Data
 
         public IEnumerable<Product> GetAll()
         {
-            throw new NotImplementedException();
+            var entities = _context.ProductEntity.ToList();
+
+            return entities.Select(e => new Product(e.ProductId, e.Name, e.Price));
         }
 
         public void Update(Product product)

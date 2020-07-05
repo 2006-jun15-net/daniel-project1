@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Project1.Data.Model;
 using Project1.Domain;
@@ -26,7 +27,9 @@ namespace Project1.Data
 
         public IEnumerable<Orders> GetAll()
         {
-            throw new NotImplementedException();
+            var entities = _context.OrdersEntity.ToList();
+
+            return entities.Select(e => new Orders(e.OrderId, e.ProductId, e.Amount));
         }
     }
 }

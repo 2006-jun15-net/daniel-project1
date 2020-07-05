@@ -2,6 +2,7 @@
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Project1.Data
@@ -17,7 +18,7 @@ namespace Project1.Data
 
         public void Create(Location location)
         {
-            var Entity = new LocationEntity { LocationId = location.LocationId, Name = location.Name, Address = location.Address };
+            var Entity = new LocationEntity {Name = location.Name, Address = location.Address };
 
             _context.LocationEntity.Add(Entity);
 
@@ -26,7 +27,9 @@ namespace Project1.Data
 
         public IEnumerable<Location> GetAll()
         {
-            throw new NotImplementedException();
+            var entities = _context.LocationEntity.ToList();
+
+            return entities.Select(e => new Location(e.Name, e.Address));
         }
 
         public void Update(Location location)
