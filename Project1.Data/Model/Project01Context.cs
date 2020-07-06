@@ -22,6 +22,7 @@ namespace Project1.Data.Model
         public virtual DbSet<OrdersEntity> OrdersEntity { get; set; }
         public virtual DbSet<ProductEntity> ProductEntity { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CustomerEntity>(entity =>

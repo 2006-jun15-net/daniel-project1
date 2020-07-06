@@ -10,7 +10,7 @@ namespace Project1.Data
     public class Project01ContextFactory : IDesignTimeDbContextFactory<Project01Context>
     {
 
-        public static readonly String connectionString = System.IO.File.ReadAllText("C:/Users/james/Desktop/Revature/Project0Connect.txt");
+        public static readonly string connectionString = System.IO.File.ReadAllText("C:/Users/james/Desktop/Revature/Project0Connect.txt");
         public Project01Context CreateDbContext(string[] args = default)
         {
             var options = new DbContextOptionsBuilder<Project01Context>()

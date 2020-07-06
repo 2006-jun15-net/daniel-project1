@@ -35,14 +35,14 @@ namespace Project1.WebApp.Controllers
         public IActionResult Index()
         {
             //add for location
-            //var viewModel = _locationRepo.GetAll().Select(a => new LocationViewModel
-           // {
-           //     Name = a.Name,
-           //     Adress = a.Address
-           // });
+            var viewModel = _locationRepo.GetAll().Select(a => new LocationViewModel
+            {
+                Name = a.Name,
+                Address = a.Address
+            });
 
-            //return View(viewModel);
-            return View();
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

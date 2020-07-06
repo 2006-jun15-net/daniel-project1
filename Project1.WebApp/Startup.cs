@@ -40,6 +40,7 @@ namespace Project1.WebApp
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
+
             services.AddControllersWithViews();
         }
 
