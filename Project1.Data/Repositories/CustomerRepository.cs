@@ -13,7 +13,7 @@ namespace Project1.Data
 
         public CustomerRepository(Project01Context context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public void Create(Customer customer)

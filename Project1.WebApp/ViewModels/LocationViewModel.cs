@@ -8,6 +8,10 @@ namespace Project1.WebApp.ViewModels
 {
     public class LocationViewModel
     {
+        [Display(Name = "Location ID")]
+        public int LocationID { get; set; }
+
+
         [Display(Name = "Location Name")]
         public string Name { get; set; }
 

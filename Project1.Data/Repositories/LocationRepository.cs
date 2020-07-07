@@ -1,4 +1,5 @@
-﻿using Project1.Data.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Project1.Data.Model;
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Project1.Data
 
         public LocationRepository(Project01Context context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public void Create(Location location)
@@ -29,7 +30,15 @@ namespace Project1.Data
         {
             var entities = _context.LocationEntity.ToList();
 
-            return entities.Select(e => new Location(e.Name, e.Address));
+            return entities.Select(e => new Location(e.LocationId, e.Name, e.Address));
+        }
+
+        public Location GetLocationByID(int id)
+        {
+            var location = _context.LocationEntity
+                .FirstOrDefault(l => l.LocationId == id);
+
+            return new Location(location.LocationId, location.Name, location.Address);
         }
 
         public void Update(Location location)

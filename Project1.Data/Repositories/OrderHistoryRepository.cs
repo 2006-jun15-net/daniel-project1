@@ -14,7 +14,7 @@ namespace Project1.Data
 
         public OrderHistoryRepository(Project01Context context)
         {
-            _context = context;
+            _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         public void Create(OrderHistory orderHistory)
