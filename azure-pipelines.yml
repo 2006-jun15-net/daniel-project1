@@ -1,19 +1,60 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# the "trigger" and "pr" settings define when
+# the pipeline will run automatically
 
+# simple trigger: list of branches
+# trigger:
+# - master
 trigger:
+  branches:
+    include:
+    - master
+    - release/*
+    exclude:
+    - release/outdated
+  paths:
+    exclude:
+    - README.md
+
+# pr trigger: automatic builds on pull requests
+# targetting certain branches
+# default is all pull requests
+pr:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
+- job: build_linux
+  # pool section defines what agent the job will run on
+  pool:
+    # get a microsoft-hosted agent running the latest ubuntu linux.
+    vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  # job has steps
+  steps:
+  - script: dotnet build
+    displayName: dotnet build
+    workingDirectory: Project1
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- job: build_windows
+
+  pool:
+    vmImage: windows-latest
+  
+  steps:
+  - task: NuGetToolInstaller@1
+    displayName: install nuget
+    inputs:
+      versionSpec:
+
+  - task: NuGetCommand@2
+    displayName: nuget restore
+    inputs:
+      command: 'restore'
+      restoreSolution: '**/*.sln'
+      feedsToUse: 'select'
+
+  - task: VSBuild@1
+    displayName: Visual Studio build
+    inputs:
+      solution: '**\*.sln'
+      platform: 'Any CPU'
+      configuration: 'Release'
