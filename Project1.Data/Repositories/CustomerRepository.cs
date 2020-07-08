@@ -46,7 +46,11 @@ namespace Project1.Data
         */
         public void Update(Customer customer)
         {
-            throw new NotImplementedException();
+            CustomerEntity currentEntity = _context.CustomerEntity.Find(customer.CustomerId);
+            var newEntity = new CustomerEntity { FirstName = currentEntity.FirstName, LastName = currentEntity.LastName };
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            _context.SaveChanges();
         }
     }
 }
