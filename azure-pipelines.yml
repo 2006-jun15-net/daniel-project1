@@ -32,7 +32,7 @@ jobs:
   steps:
   - script: dotnet build --configuration Release
     displayName: dotnet build Release
-    workingDirectory: daniel-project1
+
 
 - job: build_windows
 
