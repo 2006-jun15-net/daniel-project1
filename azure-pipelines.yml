@@ -30,10 +30,10 @@ jobs:
 
   # job has steps
   steps:
-  - script: dotnet build daniel-project1/Project1.WebApp/Project1.Webapp.sln
-    displayName: dotnet build
-
-
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
 
 - job: build_windows
 
