@@ -30,8 +30,9 @@ jobs:
 
   # job has steps
   steps:
-  - script: dotnet build --configuration Release
-    displayName: dotnet build Release
+  - script: dotnet build
+    displayName: dotnet build
+    workingDirectory: daniel-project1
 
 
 - job: build_windows
