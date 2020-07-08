@@ -32,7 +32,7 @@ jobs:
   steps:
   - script: dotnet build
     displayName: dotnet build
-    workingDirectory: daniel-project1
+
 
 
 - job: build_windows
