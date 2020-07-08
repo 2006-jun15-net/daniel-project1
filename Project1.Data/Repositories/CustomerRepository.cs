@@ -26,6 +26,14 @@ namespace Project1.Data
             _context.SaveChanges();
         }
 
+        public Customer GetCustomerById(int id)
+        {
+            CustomerEntity customer = _context.CustomerEntity
+                .FirstOrDefault(r => r.CustomerId == id);
+
+            return new Customer { CustomerId = customer.CustomerId, FirstName = customer.FirstName, LastName = customer.LastName };
+        }
+
         public IEnumerable<Customer> GetCustomers(string search = null)
         {
             IQueryable<CustomerEntity> items = _context.CustomerEntity;
@@ -47,7 +55,7 @@ namespace Project1.Data
         public void Update(Customer customer)
         {
             CustomerEntity currentEntity = _context.CustomerEntity.Find(customer.CustomerId);
-            var newEntity = new CustomerEntity { FirstName = currentEntity.FirstName, LastName = currentEntity.LastName };
+            var newEntity = new CustomerEntity { FirstName = customer.FirstName, LastName = customer.LastName, CustomerId = currentEntity.CustomerId };
 
             _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
             _context.SaveChanges();

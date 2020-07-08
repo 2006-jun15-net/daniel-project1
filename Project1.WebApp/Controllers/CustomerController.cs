@@ -63,6 +63,43 @@ namespace Project1.WebApp.Controllers
                 return View(viewModel);
             }
         }
+
+        public ActionResult Edit(int id)
+        {
+            Customer customer = _customerRepo.GetCustomerById(id);
+            var viewModel = new CustomerViewModel
+            {
+                CustomerID = customer.CustomerId,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([FromRoute]int id, [Bind("FirstName, LastName")]CustomerViewModel viewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Customer customer = _customerRepo.GetCustomerById(id);
+                    customer.FirstName = viewModel.FirstName;
+                    customer.LastName = viewModel.LastName;
+                    _customerRepo.Update(customer);
+
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return View(viewModel);
+            }
+        }
+
+
         
     }
 }

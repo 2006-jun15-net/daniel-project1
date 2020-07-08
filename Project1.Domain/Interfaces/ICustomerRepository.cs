@@ -8,6 +8,7 @@ namespace Project1.Domain
     {
         IEnumerable<Customer> GetCustomers(string search = null);
 
+        Customer GetCustomerById(int id);
 
         //IEnumerable<Customer> GetAll();
 
