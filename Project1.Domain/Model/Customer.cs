@@ -17,5 +17,7 @@ namespace Project1.Domain
             LastName = lastname;
         }
 
+        public Customer() { }
+
     }
 }

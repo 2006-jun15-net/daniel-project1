@@ -1,4 +1,5 @@
-﻿using Project1.Data.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Project1.Data.Model;
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
@@ -18,20 +19,31 @@ namespace Project1.Data
 
         public void Create(Customer customer)
         {
-            var Entity = new CustomerEntity { CustomerId = customer.CustomerId, FirstName = customer.FirstName, LastName = customer.LastName };
+            var Entity = new CustomerEntity {FirstName = customer.FirstName, LastName = customer.LastName };
 
             _context.CustomerEntity.Add(Entity);
 
             _context.SaveChanges();
         }
 
+        public IEnumerable<Customer> GetCustomers(string search = null)
+        {
+            IQueryable<CustomerEntity> items = _context.CustomerEntity;
+            if (search != null)
+            {
+                items = items.Where(r => r.FirstName.Contains(search));
+            }
+            return items.Select(e => new Customer(e.CustomerId, e.FirstName, e.LastName));
+        }
+        
+        /*
         public IEnumerable<Customer> GetAll()
         {
             var entities = _context.CustomerEntity.ToList();
 
             return entities.Select(e => new Customer(e.CustomerId, e.FirstName, e.LastName));
         }
-
+        */
         public void Update(Customer customer)
         {
             throw new NotImplementedException();

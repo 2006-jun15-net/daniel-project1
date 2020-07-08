@@ -6,7 +6,10 @@ namespace Project1.Domain
 {
     public interface ICustomerRepository
     {
-        IEnumerable<Customer> GetAll();
+        IEnumerable<Customer> GetCustomers(string search = null);
+
+
+        //IEnumerable<Customer> GetAll();
 
         void Create(Customer customer);
 

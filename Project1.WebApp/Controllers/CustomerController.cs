@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Project1.Data;
 using Project1.Domain;
 using Project1.WebApp.ViewModels;
 
@@ -16,10 +17,11 @@ namespace Project1.WebApp.Controllers
         {
             _customerRepo = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
         }
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string search = "")
         {
 
-            var viewModel = _customerRepo.GetAll().Select(a => new CustomerViewModel
+            var customers = _customerRepo.GetCustomers(search);
+            var viewModel = customers.Select(a => new CustomerViewModel
             {
                 CustomerID = a.CustomerId,
                 FirstName = a.FirstName,
@@ -30,5 +32,37 @@ namespace Project1.WebApp.Controllers
 
             return View(viewModel);
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind("FirstName, LastName")] CustomerViewModel viewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Customer customer = new Customer
+                    {
+                        FirstName = viewModel.FirstName,
+                        LastName = viewModel.LastName
+                    };
+                    _customerRepo.Create(customer);
+                 
+
+                    return RedirectToAction(nameof(Index));
+                }
+                return View(viewModel);
+            }
+            catch
+            {
+                return View(viewModel);
+            }
+        }
+        
     }
 }
