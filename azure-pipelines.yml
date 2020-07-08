@@ -30,9 +30,10 @@ jobs:
 
   # job has steps
   steps:
-  - script: dotnet build
-    displayName: dotnet build
-    workingDirectory: Project1
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
 
 - job: build_windows
 
