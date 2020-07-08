@@ -30,10 +30,23 @@ jobs:
 
   # job has steps
   steps:
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'sonarcloud-TrueFlame42'
+      organization: '2006-jun15-net'
+      scannerMode: 'MSBuild'
+      projectKey: '2006-jun15-net_daniel-project1'
+      projectName: 'Daniel project 1 Project1'
   - task: DotNetCoreCLI@2
     inputs:
       command: 'build'
       projects: '**/*.csproj'
+
+  - task: SonarCloudAnalyze@1
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
 
 - job: build_windows
 
