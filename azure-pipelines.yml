@@ -30,7 +30,7 @@ jobs:
 
   # job has steps
   steps:
-  - script: dotnet build Project1.WebApp/Project1.Webapp.sln
+  - script: dotnet build daniel-project1/Project1.WebApp/Project1.Webapp.sln
     displayName: dotnet build
 
 
