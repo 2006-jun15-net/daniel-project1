@@ -24,6 +24,7 @@ namespace Project1.WebApp.Controllers
 
             var viewModel = _locationRepo.GetAll().Select(a => new LocationViewModel
             {
+                LocationID = a.LocationID,
                 Name = a.Name,
                 Address = a.Address
             });

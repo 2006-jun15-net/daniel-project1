@@ -15,6 +15,7 @@ namespace Project1.WebApp.ViewModels
         [Display(Name = "Location Name")]
         public string Name { get; set; }
 
+        [Display(Name = "How to get from here to There")]
         public string Address { get; set; }
     }
 }

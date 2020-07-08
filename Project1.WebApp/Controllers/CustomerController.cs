@@ -99,7 +99,20 @@ namespace Project1.WebApp.Controllers
             }
         }
 
-
+        public ActionResult Details(int id)
+        {
+            Customer customer = _customerRepo.GetCustomerById(id);
+            var viewModel = new CustomerViewModel
+            {
+                CustomerID = customer.CustomerId,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName
+            };
+            return View(viewModel);
+        }
         
+
+
+
     }
 }
