@@ -11,7 +11,7 @@ namespace Project1.WebApp.Controllers
 {
     public class LocationController : Controller
     {
-        
+
         private readonly ILocationRepository _locationRepo;
 
         public LocationController(ILocationRepository locationRepo)
@@ -29,9 +29,30 @@ namespace Project1.WebApp.Controllers
                 Address = a.Address
             });
 
+            return View(viewModel);
+        }
+
+        public ActionResult Details(int id)
+        {
+            Location location = _locationRepo.GetLocationByID(id);
+            var viewModel = new LocationViewModel
+            {
+                LocationID = location.LocationID,
+                Name = location.Name,
+                Address = location.Address
+            };
 
             return View(viewModel);
         }
+
+
+
+
+
+
+
+
+
 
     }
 }
