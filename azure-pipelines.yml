@@ -39,7 +39,7 @@ jobs:
       inputs:
         command: 'build'
         projects: '**/*.csproj'
-        arguments: '--configuration $(buildConfiguration)'
+        arguments: 'publish -o --configuration $(buildConfiguration)'
         workingDirectory: '$(System.DefaultWorkingDirectory)'
    
 
