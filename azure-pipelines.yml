@@ -23,6 +23,7 @@ jobs:
       scannerMode: 'MSBuild'
       projectKey: '2006-jun15-net_daniel-project1'
       projectName: 'Daniel project 1 Project1'
+      extraProperties: 'sonar.exclusions=**/lib/**'
   
   - task: NuGetToolInstaller@1
     displayName: install nuget
@@ -43,12 +44,23 @@ jobs:
       platform: 'Any CPU'
       configuration: 'Release'
 
+  - script: dotnet build ".\Project1.WebApp.sln" --configuration 'Release'
+    displayName: 'dotnet build Release'
+  - script: dotnet publish ".\Project1.WebApp.sln" --configuration 'Release' --output $(Build.ArtifactStagingDirectory)
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+
   - task: DotNetCoreCLI@2
     inputs:
       command: 'test'
       projects: '$(solutionPath)/Project1.Test/*.csproj'
       arguments: '-c Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
       testRunTitle: 'windows tests'
+
+  - task: PublishBuildArtifacts@1
 
   - task: DotNetCoreCLI@2
     inputs:
