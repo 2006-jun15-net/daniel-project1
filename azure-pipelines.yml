@@ -50,6 +50,14 @@ jobs:
       arguments: '-c Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
       testRunTitle: 'windows tests'
 
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'publish'
+      arguments: '--output $(Build.ArtifactStagingDirectory)'
+      projects: '$(solutionPath)'
+      publishWebProjects: true
+
+
 
   - task: AzureRmWebAppDeployment@4
     inputs:
