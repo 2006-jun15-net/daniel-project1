@@ -49,7 +49,7 @@ jobs:
       displayName: dotnet test
       inputs:
         command: 'test'
-        projects: '$(solutionPath)'
+        projects: 'Project1.WebApp.Test'
         arguments: '-c Release --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover'
         testRunTitle: 'ubuntu'
 
