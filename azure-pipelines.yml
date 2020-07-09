@@ -23,14 +23,6 @@ jobs:
       scannerMode: 'MSBuild'
       projectKey: '2006-jun15-net_daniel-project1'
       projectName: 'Daniel project 1 Project1'
-
-
-  - task: DotNetCoreCLI@2
-    displayName: Build
-    inputs:
-      command: build
-      projects: '**/*.csproj'
-      arguments: '--configuration $(buildConfiguration)' 
   
   - task: NuGetToolInstaller@1
     displayName: install nuget
