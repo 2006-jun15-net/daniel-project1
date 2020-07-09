@@ -9,11 +9,13 @@ variables:
   solutionPath: '**\*.sln'
 
 jobs:
-- job: build_linux
-  pool:
-    vmImage: 'ubuntu-latest'
+- job: build_windows
 
+  pool:
+    vmImage: windows-latest
+  
   steps:
+
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'sonarcloud-TrueFlame42'
@@ -22,35 +24,14 @@ jobs:
       projectKey: '2006-jun15-net_daniel-project1'
       projectName: 'Daniel project 1 Project1'
 
-  - script: dotnet build -c Release
-    displayName: dotnet build
-    workingDirectory: $(solutionPath)
+
   - task: DotNetCoreCLI@2
-    displayName: dotnet test
+    displayName: Build
     inputs:
-      command: 'test'
-      arguments: '-c Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/' 
-      projects: '$(solutionPath)/Project1.Test/*.csproj'
-      testRunTitle: 'ubuntu tests'
-  - task: PublishCodeCoverageResults@1
-    displayName: 'publish code coverage report'
-    inputs:
-      codeCoverageTool: 'Cobertura'
-      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/cobertura/coverage.xml'
-
-
-  - task: SonarCloudAnalyze@1
-
-  - task: SonarCloudPublish@1
-    inputs:
-      pollingTimeoutSec: '300'
-
-- job: build_windows
-
-  pool:
-    vmImage: windows-latest
+      command: build
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration)' 
   
-  steps:
   - task: NuGetToolInstaller@1
     displayName: install nuget
     inputs:
@@ -70,6 +51,14 @@ jobs:
       platform: 'Any CPU'
       configuration: 'Release'
 
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'test'
+      projects: '$(solutionPath)/Project1.Test/*.csproj'
+      arguments: '-c Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(Build.SourcesDirectory)/TestResults/Coverage/'
+      testRunTitle: 'windows tests'
+
+
   - task: AzureRmWebAppDeployment@4
     inputs:
       ConnectionType: 'AzureRM'
@@ -77,3 +66,15 @@ jobs:
       appType: 'webApp'
       WebAppName: 'Projec1tTest-daniel'
       packageForLinux: '$(System.DefaultWorkingDirectory)/publish'
+
+  - task: PublishCodeCoverageResults@1
+    displayName: 'publish code coverage report'
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/cobertura/coverage.xml'
+
+  - task: SonarCloudAnalyze@1
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
