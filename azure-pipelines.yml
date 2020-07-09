@@ -34,18 +34,15 @@ jobs:
           sonar.exclusions=**/lib/**
           sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
           sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml
-    
-    - task: DotNetCoreCLI@2
-      inputs:
-        command: 'build'
-        projects: '**/*.csproj'
-        arguments: 'publish -o --configuration $(buildConfiguration)'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
-   
 
-    #- script: dotnet build -c Release
-    #  displayName: dotnet build
-     # workingDirectory: $(solutionPath)
+    - task: UseDotNet@2
+      inputs:
+        packageType: 'sdk'
+        version: '3.x'
+
+    - script: dotnet build -c Release
+      displayName: dotnet build
+      workingDirectory: $(solutionPath)
 
     - task: DotNetCoreCLI@2
       displayName: dotnet test
