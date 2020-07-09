@@ -44,14 +44,6 @@ namespace Project1.Data
             return items.Select(e => new Customer(e.CustomerId, e.FirstName, e.LastName));
         }
         
-        /*
-        public IEnumerable<Customer> GetAll()
-        {
-            var entities = _context.CustomerEntity.ToList();
-
-            return entities.Select(e => new Customer(e.CustomerId, e.FirstName, e.LastName));
-        }
-        */
         public void Update(Customer customer)
         {
             CustomerEntity currentEntity = _context.CustomerEntity.Find(customer.CustomerId);

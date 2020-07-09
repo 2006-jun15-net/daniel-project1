@@ -16,5 +16,7 @@ namespace Project1.Domain
             Name = name;
             Price = price;
         }
+
+        public Product() { }
     }
 }

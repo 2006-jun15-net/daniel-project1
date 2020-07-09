@@ -32,9 +32,23 @@ namespace Project1.Data
             return entities.Select(e => new Inventory(e.LocationId, e.ProductId, e.Amount));
         }
 
+        public Inventory GetInventoryById(int id)
+        {
+            var inventory = _context.InventoryEntity
+                 .FirstOrDefault(l => l.LocationId == id);
+
+            return new Inventory(inventory.LocationId, inventory.ProductId, inventory.Amount);
+        }
+
         public void Update(Inventory inventory)
         {
             throw new NotImplementedException();
         }
+
+
+
+
+
+
     }
 }

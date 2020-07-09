@@ -8,6 +8,10 @@ namespace Project1.Domain
     {
         IEnumerable<OrderHistory> GetAll();
 
+        IEnumerable<OrderHistory> GetOrderHistoryByLocationId(int id);
+
+        IEnumerable<OrderHistory> GetOrderHistoryByCustomerId(int id);
+
         void Create(OrderHistory orderHistory);
     }
 }

@@ -21,6 +21,8 @@ namespace Project1.Domain
 
         }
 
+        public Location() { }
+
 
 
     }

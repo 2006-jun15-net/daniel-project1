@@ -36,5 +36,25 @@ namespace Project1.Data
 
             return entities.Select(e => new OrderHistory(e.OrderId, e.LocationId, e.CustomerId, e.Date, e.Time));
         }
+
+        public IEnumerable<OrderHistory> GetOrderHistoryByCustomerId(int id)
+        {
+            IEnumerable<OrderHistory> entities = (IEnumerable<OrderHistory>)_context.OrderHistoryEntity
+                 .Where(r => r.CustomerId == id)
+                 .ToList();
+
+            return entities.Select(e => new OrderHistory(e.OrderId, e.LocationId, e.CustomerId, e.Date, e.Time));
+        }
+
+        public IEnumerable<OrderHistory> GetOrderHistoryByLocationId(int id)
+        {
+            IEnumerable<OrderHistory> entities = (IEnumerable<OrderHistory>)_context.OrderHistoryEntity
+                .Where(r => r.LocationId == id)
+                .ToList();
+
+            return entities.Select(e => new OrderHistory(e.OrderId, e.LocationId, e.CustomerId, e.Date, e.Time));
+        }
+
+
     }
 }

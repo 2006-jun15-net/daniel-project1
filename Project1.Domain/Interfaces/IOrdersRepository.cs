@@ -9,5 +9,9 @@ namespace Project1.Domain
         IEnumerable<Orders> GetAll();
 
         void Create(Orders orders);
+
+        IEnumerable<Orders> GetOrdersByOrderId(int id);
+
+
     }
 }

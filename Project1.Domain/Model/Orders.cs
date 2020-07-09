@@ -19,7 +19,7 @@ namespace Project1.Domain
             Amount = amount;
         }
 
-
+        public Orders() { }
 
     }
 }

@@ -10,8 +10,6 @@ namespace Project1.Domain
 
         Customer GetCustomerById(int id);
 
-        //IEnumerable<Customer> GetAll();
-
         void Create(Customer customer);
 
         void Update(Customer customer);

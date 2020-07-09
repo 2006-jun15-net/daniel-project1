@@ -16,5 +16,7 @@ namespace Project1.Domain
             ProductId = productID;
             Amount = amount;
         }
+
+        public Inventory() { }
     }
 }

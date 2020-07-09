@@ -32,6 +32,15 @@ namespace Project1.Data
             return entities.Select(e => new Product(e.ProductId, e.Name, e.Price));
         }
 
+        public Product GetProductById(int id)
+        {
+            var product = _context.ProductEntity
+                .FirstOrDefault(l => l.ProductId == id);
+
+            return new Product(product.ProductId, product.Name, product.Price);
+        }
+
+
         public void Update(Product product)
         {
             throw new NotImplementedException();

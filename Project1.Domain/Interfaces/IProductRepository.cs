@@ -8,6 +8,9 @@ namespace Project1.Domain
     {
         IEnumerable<Product> GetAll();
 
+        Product GetProductById(int id);
+
+
         void Create(Product product);
 
         void Update(Product product);

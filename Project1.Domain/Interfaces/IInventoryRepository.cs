@@ -8,6 +8,8 @@ namespace Project1.Domain
     {
         IEnumerable<Inventory> GetAll();
 
+        Inventory GetInventoryById(int id);
+
         void Create(Inventory inventory);
 
         void Update(Inventory inventory);

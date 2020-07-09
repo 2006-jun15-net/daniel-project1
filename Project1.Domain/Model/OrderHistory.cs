@@ -20,5 +20,7 @@ namespace Project1.Domain
             Date = date;
             Time = time;
         }
+
+        public OrderHistory() { }
     }
 }

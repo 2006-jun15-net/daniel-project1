@@ -31,5 +31,14 @@ namespace Project1.Data
 
             return entities.Select(e => new Orders(e.OrderId, e.ProductId, e.Amount));
         }
+
+        public IEnumerable<Orders> GetOrdersByOrderId(int id)
+        {
+            IEnumerable<Orders> entities = (IEnumerable<Orders>)_context.OrdersEntity
+                 .Where(r => r.OrderId == id)
+                 .ToList();
+
+            return entities.Select(e => new Orders(e.OrderID, e.ProductID, e.Amount));
+        }
     }
 }
