@@ -71,7 +71,7 @@ jobs:
 
     - script: dotnet publish -c Release -o ../publish
       displayName: dotnet publish
-      workingDirectory: $(solutionPath)
+      workingDirectory: 'Project1.WebApp'
 
     - task: AzureRmWebAppDeployment@4
       displayName: azure app service deploy
