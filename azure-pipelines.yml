@@ -14,7 +14,8 @@ pr:
 - master
 
 variables:
-  solutionPath: daniel-project1
+  solutionPath: Project1.WebApp/Project1.Webapp.sln
+
 
 jobs:
   - job: build_linux
