@@ -36,10 +36,10 @@ jobs:
           sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
           sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml
 
-    - task: UseDotNet@2
-      inputs:
-        packageType: 'sdk'
-        version: '3.x'
+   # - task: UseDotNet@2
+    #  inputs:
+    #    packageType: 'sdk'
+     #   version: '3.x'
 
     - script: dotnet build -c Release
       displayName: dotnet build
