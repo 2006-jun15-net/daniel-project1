@@ -17,5 +17,8 @@ namespace Project1.WebApp.ViewModels
 
         [Display(Name = "How to get from here to There")]
         public string Address { get; set; }
+
+        public IEnumerable<OrderHistoryViewModel> OrderHistoryViewModels { get; set; }
+
     }
 }

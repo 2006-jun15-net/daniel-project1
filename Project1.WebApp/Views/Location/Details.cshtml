@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>LocationViewModel</h4>
+    <h4>Location Details</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -31,6 +31,69 @@
     </dl>
 </div>
 <div>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.LocationID  }) |*@
     <a asp-action="Index">Back to List</a>
+</div>
+
+<div>
+    <br />
+    <p>
+        <a asp-controller="OrderHistory" asp-action="Create"
+           asp-all-route-data="@(new Dictionary<string, string> { { "locationID", Model.LocationID.ToString() } })">
+            Place New Order
+        </a>
+    </p>
+
+    @if (Model.OrderHistoryViewModels.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().CustomerId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().OrderId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().LocationId)  
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().Date)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().Time)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderHistoryViewModels)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Details", new { id = item.OrderId })
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </div>

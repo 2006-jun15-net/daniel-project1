@@ -1,0 +1,16 @@
+﻿
+
+@{
+    ViewBag.Title = "UserDashBoard";
+}
+
+<fieldset>
+    <legend>User DashBoard</legend>
+
+    @if (Context.Request.Cookies["CustomerID"] != null)
+    {
+<p>
+    Signed in as: @Context.Request.Cookies["FirstName"] @Context.Request.Cookies["LastName"]
+</p>
+    }
+</fieldset>

@@ -12,10 +12,13 @@ namespace Project1.WebApp.Controllers
     public class CustomerController : Controller
     {
         private readonly ICustomerRepository _customerRepo;
+        private readonly IOrderHistoryRepository _orderhistoryRepo;
 
-        public CustomerController(ICustomerRepository customerRepository)
+
+        public CustomerController(ICustomerRepository customerRepository, IOrderHistoryRepository orderHistoryRepo)
         {
             _customerRepo = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
+            _orderhistoryRepo = orderHistoryRepo ?? throw new ArgumentNullException(nameof(orderHistoryRepo));
         }
         public IActionResult Index([FromQuery] string search = "")
         {
@@ -106,7 +109,15 @@ namespace Project1.WebApp.Controllers
             {
                 CustomerID = customer.CustomerId,
                 FirstName = customer.FirstName,
-                LastName = customer.LastName
+                LastName = customer.LastName,
+                OrderHistoryViewModels = _orderhistoryRepo.GetOrderHistoryByCustomerId(id).Select(y => new OrderHistoryViewModel
+                {
+                    LocationId = y.LocationId,
+                    OrderId = y.OrderId,
+                    CustomerId = y.CustomerId,
+                    Date = y.Date,
+                    Time = y.Time
+                })
             };
             return View(viewModel);
         }

@@ -39,7 +39,7 @@ namespace Project1.Data
 
         public IEnumerable<OrderHistory> GetOrderHistoryByCustomerId(int id)
         {
-            IEnumerable<OrderHistory> entities = (IEnumerable<OrderHistory>)_context.OrderHistoryEntity
+            var entities = _context.OrderHistoryEntity
                  .Where(r => r.CustomerId == id)
                  .ToList();
 
@@ -48,7 +48,7 @@ namespace Project1.Data
 
         public IEnumerable<OrderHistory> GetOrderHistoryByLocationId(int id)
         {
-            IEnumerable<OrderHistory> entities = (IEnumerable<OrderHistory>)_context.OrderHistoryEntity
+            var entities = _context.OrderHistoryEntity
                 .Where(r => r.LocationId == id)
                 .ToList();
 

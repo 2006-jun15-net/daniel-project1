@@ -13,10 +13,12 @@ namespace Project1.WebApp.Controllers
     {
 
         private readonly ILocationRepository _locationRepo;
+        private readonly IOrderHistoryRepository _orderhistoryRepo;
 
-        public LocationController(ILocationRepository locationRepo)
+        public LocationController(ILocationRepository locationRepo, IOrderHistoryRepository orderHistoryRepo)
         {
             _locationRepo = locationRepo ?? throw new ArgumentNullException(nameof(locationRepo));
+            _orderhistoryRepo = orderHistoryRepo ?? throw new ArgumentNullException(nameof(orderHistoryRepo));
         }
 
         public IActionResult Index()
@@ -39,8 +41,17 @@ namespace Project1.WebApp.Controllers
             {
                 LocationID = location.LocationID,
                 Name = location.Name,
-                Address = location.Address
+                Address = location.Address,
+                OrderHistoryViewModels = _orderhistoryRepo.GetOrderHistoryByLocationId(id).Select(y => new OrderHistoryViewModel
+                {
+                    LocationId = y.LocationId,
+                    OrderId = y.OrderId,
+                    CustomerId = y.CustomerId,
+                    Date = y.Date,
+                    Time = y.Time
+                })
             };
+
 
             return View(viewModel);
         }

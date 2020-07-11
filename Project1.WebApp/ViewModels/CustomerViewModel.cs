@@ -21,5 +21,7 @@ namespace Project1.WebApp.ViewModels
         [Display(Name = "Customer Last Name")]
         public string LastName { get; set; }
 
+        public IEnumerable<OrderHistoryViewModel> OrderHistoryViewModels { get; set; }
+
     }
 }

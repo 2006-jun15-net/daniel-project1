@@ -30,8 +30,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customers</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                            </li>
                     </ul>
                 </div>
+                @if (Context.Request.Cookies["CustomerID"] != null)
+                {
+                    <p class="text-right">
+                        Signed in as:  @Context.Request.Cookies["FirstName"] @Context.Request.Cookies["LastName"]
+                    </p>
+                }
             </div>
         </nav>
     </header>

@@ -34,6 +34,22 @@ namespace Project1.Data
             return new Customer { CustomerId = customer.CustomerId, FirstName = customer.FirstName, LastName = customer.LastName };
         }
 
+        public Customer GetCustomerByFullName(string firstname, string lastname)
+        {
+            CustomerEntity customer = _context.CustomerEntity
+                .FirstOrDefault(r => r.FirstName == firstname && r.LastName == lastname);
+
+            if (customer != null)
+            {
+                return new Customer { CustomerId = customer.CustomerId, FirstName = customer.FirstName, LastName = customer.LastName };
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
+
         public IEnumerable<Customer> GetCustomers(string search = null)
         {
             IQueryable<CustomerEntity> items = _context.CustomerEntity;

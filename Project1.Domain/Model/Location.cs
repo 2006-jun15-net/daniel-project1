@@ -12,7 +12,6 @@ namespace Project1.Domain
         public string Name { get; set; }
         public string Address { get; set; }
 
-        //removed locationID
         public Location(int locationID, string name, string address)
         {
             LocationID = locationID;

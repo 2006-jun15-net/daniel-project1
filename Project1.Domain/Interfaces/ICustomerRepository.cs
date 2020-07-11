@@ -10,6 +10,7 @@ namespace Project1.Domain
 
         Customer GetCustomerById(int id);
 
+        Customer GetCustomerByFullName(string firstname, string lastname);
         void Create(Customer customer);
 
         void Update(Customer customer);
