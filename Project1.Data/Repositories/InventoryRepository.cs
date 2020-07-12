@@ -1,4 +1,5 @@
-﻿using Project1.Data.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using Project1.Data.Model;
 using Project1.Domain;
 using System;
 using System.Collections.Generic;
@@ -32,12 +33,14 @@ namespace Project1.Data
             return entities.Select(e => new Inventory(e.LocationId, e.ProductId, e.Amount));
         }
 
-        public Inventory GetInventoryById(int id)
+        public IEnumerable<Inventory> GetInventoryById(int id)
         {
             var inventory = _context.InventoryEntity
-                 .FirstOrDefault(l => l.LocationId == id);
+                .Include(e => e.Product)
+                .Where(l => l.LocationId == id)
+                .ToList();
 
-            return new Inventory(inventory.LocationId, inventory.ProductId, inventory.Amount);
+            return inventory.Select(k => new Inventory(k.LocationId, k.ProductId, k.Product.Name, k.Product.Price, k.Amount));
         }
 
         public void Update(Inventory inventory)

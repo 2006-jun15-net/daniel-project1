@@ -20,5 +20,7 @@ namespace Project1.WebApp.ViewModels
 
         public IEnumerable<OrderHistoryViewModel> OrderHistoryViewModels { get; set; }
 
+        public IEnumerable<InventoryViewModel> InventoryViewModels { get; set; }
+
     }
 }

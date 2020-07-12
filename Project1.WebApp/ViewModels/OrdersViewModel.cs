@@ -14,6 +14,9 @@ namespace Project1.WebApp.ViewModels
         [Display(Name = "Product ID")]
         public int ProductID { get; set; }
 
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
         [Display(Name = "Amount")]
         public int Amount { get; set; }
 

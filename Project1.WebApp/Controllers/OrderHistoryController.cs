@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Project1.Domain;
+using Project1.WebApp.ViewModels;
 
 namespace Project1.WebApp.Controllers
 {
@@ -23,6 +25,20 @@ namespace Project1.WebApp.Controllers
             return View();
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(OrderHistoryViewModel viewModel)
+        {
+
+
+
+            return View(viewModel);
+        }
 
     }
 }

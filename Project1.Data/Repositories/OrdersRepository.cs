@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using Project1.Data.Model;
 using Project1.Domain;
 
@@ -34,11 +35,12 @@ namespace Project1.Data
 
         public IEnumerable<Orders> GetOrdersByOrderId(int id)
         {
-            IEnumerable<Orders> entities = (IEnumerable<Orders>)_context.OrdersEntity
-                 .Where(r => r.OrderId == id)
-                 .ToList();
+            var entities = _context.OrdersEntity
+                .Include(e => e.Product)
+                .Where(r => r.OrderId == id)
+                .ToList();
 
-            return entities.Select(e => new Orders(e.OrderID, e.ProductID, e.Amount));
+            return entities.Select(k => new Orders(k.OrderId, k.ProductId, k.Product.Name, k.Amount));
         }
     }
 }
