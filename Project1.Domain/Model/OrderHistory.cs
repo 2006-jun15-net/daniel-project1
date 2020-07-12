@@ -12,11 +12,11 @@ namespace Project1.Domain
         public string Date { get; set; }
         public string Time { get; set; }
 
-        public OrderHistory(int orderID, int customerID, int locationID, string date, string time)
+        public OrderHistory(int orderID, int locationID, int customerID, string date, string time)
         {
             OrderId = orderID;
-            CustomerId = customerID;
             LocationId = locationID;
+            CustomerId = customerID;
             Date = date;
             Time = time;
         }

@@ -88,7 +88,7 @@
 <div>
     <br />
     <div class="text-right">
-        @if (Context.Request.Cookies["CustomerID"] != null)
+        @if (Context.Request.Cookies["CustomerID"] != null && Context.Request.Cookies["CustomerID"] != "0")
         {
             <p>
                 <a asp-controller="OrderHistory" asp-action="Create">
@@ -106,13 +106,13 @@
             <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().CustomerId)
-                    </th>
-                    <th>
                         @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().OrderId)
                     </th>
                     <th>
                         @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().LocationId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().CustomerId)
                     </th>
                     <th>
                         @Html.DisplayNameFor(Model => Model.OrderHistoryViewModels.FirstOrDefault().Date)
@@ -125,26 +125,26 @@
             <tbody>
                 @foreach (var item in Model.OrderHistoryViewModels)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LocationId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OrderId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CustomerId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Time)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", "Details", new { id = item.OrderId })
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "OrderHistory", new { id = item.OrderId}, null)
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

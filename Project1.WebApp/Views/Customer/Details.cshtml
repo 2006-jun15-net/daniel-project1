@@ -61,26 +61,26 @@
             <tbody>
                 @foreach (var item in Model.OrderHistoryViewModels)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LocationId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.OrderId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CustomerId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Time)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", "Details", new { id = item.OrderId })
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LocationId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "OrderHistory", new { id = item.OrderId}, null)
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

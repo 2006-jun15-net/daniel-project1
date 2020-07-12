@@ -8,6 +8,8 @@ namespace Project1.Domain
     {
         IEnumerable<OrderHistory> GetAll();
 
+        OrderHistory GetOrderHistoryByOrderId(int id);
+
         IEnumerable<OrderHistory> GetOrderHistoryByLocationId(int id);
 
         IEnumerable<OrderHistory> GetOrderHistoryByCustomerId(int id);

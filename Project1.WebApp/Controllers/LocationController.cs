@@ -36,9 +36,22 @@ namespace Project1.WebApp.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, bool c)
         {
-            HttpContext.Response.Cookies.Append("LocationID", $"{id}");
+            if (c == false)
+            {
+                HttpContext.Response.Cookies.Append("Customer", "false");
+            };
+
+            if (id != 0)
+            {
+                HttpContext.Response.Cookies.Append("LocationID", $"{id}");
+            }
+            else
+            {
+                id = int.Parse(HttpContext.Request.Cookies["LocationID"]);
+            }
+            
             Location location = _locationRepo.GetLocationByID(id);
             var viewModel = new LocationViewModel
             {

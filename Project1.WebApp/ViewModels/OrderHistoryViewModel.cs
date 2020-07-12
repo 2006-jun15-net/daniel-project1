@@ -12,14 +12,11 @@ namespace Project1.WebApp.ViewModels
         [Display(Name = "Order ID")]
         public int OrderId { get; set; }
 
-
-        [Display(Name = "Customer ID")]
-        public int CustomerId { get; set; }
-
-
         [Display(Name = "Location ID")]
         public int LocationId { get; set; }
 
+        [Display(Name = "Customer ID")]
+        public int CustomerId { get; set; }
 
         [Display(Name = "Date MM-dd-yyyy ")]
         public string Date { get; set; }

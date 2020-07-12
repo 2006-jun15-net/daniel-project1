@@ -55,6 +55,12 @@ namespace Project1.Data
             return entities.Select(e => new OrderHistory(e.OrderId, e.LocationId, e.CustomerId, e.Date, e.Time));
         }
 
+        public OrderHistory GetOrderHistoryByOrderId(int id)
+        {
+            var orderHistory  = _context.OrderHistoryEntity
+               .FirstOrDefault(l => l.OrderId == id);
 
+            return new OrderHistory(orderHistory.OrderId, orderHistory.LocationId, orderHistory.CustomerId, orderHistory.Date, orderHistory.Time);
+        }
     }
 }

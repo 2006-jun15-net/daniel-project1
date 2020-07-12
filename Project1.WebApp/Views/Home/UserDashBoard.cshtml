@@ -7,7 +7,7 @@
 <fieldset>
     <legend>User DashBoard</legend>
 
-    @if (Context.Request.Cookies["CustomerID"] != null)
+    @if (Context.Request.Cookies["CustomerID"] != null && Context.Request.Cookies["CustomerID"] != "0")
     {
 <p>
     Signed in as: @Context.Request.Cookies["FirstName"] @Context.Request.Cookies["LastName"]

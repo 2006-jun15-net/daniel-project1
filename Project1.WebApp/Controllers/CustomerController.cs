@@ -102,8 +102,21 @@ namespace Project1.WebApp.Controllers
             }
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, bool c)
         {
+            if (c == true)
+            {
+                HttpContext.Response.Cookies.Append("Customer", "true");
+            };
+
+            if (id != 0)
+            {
+                HttpContext.Response.Cookies.Append("CustomerID", $"{id}");
+            }
+            else
+            {
+                id = int.Parse(HttpContext.Request.Cookies["CustomerID"]);
+            }
             Customer customer = _customerRepo.GetCustomerById(id);
             var viewModel = new CustomerViewModel
             {
