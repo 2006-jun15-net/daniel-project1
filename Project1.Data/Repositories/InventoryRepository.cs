@@ -45,7 +45,12 @@ namespace Project1.Data
 
         public void Update(Inventory inventory)
         {
-            throw new NotImplementedException();
+            InventoryEntity currentEntity = _context.InventoryEntity.Find(inventory.LocationId, inventory.ProductId);
+            int newAmount = currentEntity.Amount - inventory.Amount;
+            var newEntity = new InventoryEntity { Amount = newAmount, LocationId = currentEntity.LocationId, ProductId = currentEntity.ProductId };
+
+            _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
+            _context.SaveChanges();
         }
 
 

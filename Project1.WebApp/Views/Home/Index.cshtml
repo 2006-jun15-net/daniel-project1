@@ -1,13 +1,64 @@
-﻿
+﻿@model Project1.WebApp.ViewModels.CustomerViewModel
+
 @{
     ViewData["Title"] = "Home Page";
 }
-    <div>
-        <h3>@ViewBag.Title</h3>
-    </div>
-
-
-    <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
+<div>
+    <h3>@ViewBag.Title</h3>
 </div>
-       
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @Context.Request.Cookies["FirstName"] @Context.Request.Cookies["LastName"]</h1>
+</div>
+
+
+
+
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Login or Switch Account</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.FirstName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(a => a.FirstName)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.LastName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(a => a.LastName)
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}

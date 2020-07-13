@@ -23,7 +23,7 @@ namespace Project1.Data
             string date = DateTime.UtcNow.ToString("MM-dd-yyyy");
             string time = DateTime.Now.ToString("HH:mm");
 
-            var Entity = new OrderHistoryEntity { OrderId = orderHistory.OrderId, CustomerId = orderHistory.CustomerId, LocationId = orderHistory.LocationId, Date = date, Time = time };
+            var Entity = new OrderHistoryEntity {CustomerId = orderHistory.CustomerId, LocationId = orderHistory.LocationId, Date = date, Time = time };
 
             _context.OrderHistoryEntity.Add(Entity);
 

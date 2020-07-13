@@ -90,11 +90,9 @@
     <div class="text-right">
         @if (Context.Request.Cookies["CustomerID"] != null && Context.Request.Cookies["CustomerID"] != "0")
         {
-            <p>
-                <a asp-controller="OrderHistory" asp-action="Create">
-                    Place New Order
-                </a>
-            </p>
+        <p>
+            @Html.ActionLink("Place New Order", "Shop", new { id = Model.LocationID})
+        </p>
         }
     </div>
     <br />

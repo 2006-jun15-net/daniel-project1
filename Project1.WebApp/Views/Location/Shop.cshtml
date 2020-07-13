@@ -1,3 +1,183 @@
-﻿@{
+﻿@model Project1.WebApp.ViewModels.LocationViewModel
+
+@{
     ViewData["Title"] = "Shop";
 }
+
+<h1>Details</h1>
+
+<div>
+    <h4>Location Details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LocationID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LocationID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Details">Back to Location Details</a>
+</div>
+<div>
+    @if (Model.InventoryViewModels.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.InventoryViewModels.FirstOrDefault().LocationId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.InventoryViewModels.FirstOrDefault().ProductId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.InventoryViewModels.FirstOrDefault().Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.InventoryViewModels.FirstOrDefault().Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.InventoryViewModels.FirstOrDefault().Amount)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.InventoryViewModels)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LocationId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    @using (Html.BeginForm())
+    {
+        <form>
+            <div>
+                <label for="ProductID">Enter Product ID</label>
+                <input type="number" value="ID" name="ProductID" min="1" max="5"/>
+            </div>
+            <div>
+                <label for="PurchaseAmount">Enter Amount</label>
+                <input type="number" value="amount" name="PurchaseAmount" min="1" />
+            </div>
+            <div>
+                <input type="submit" value="Save" />
+            </div>
+        </form>
+    }
+</div>
+
+
+
+
+
+<div>
+    <h2 class="text-center">Shopping Cart</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Product ID
+                </th>
+                <th>
+                    Amount Selected
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @if (int.Parse(@Context.Request.Cookies["ProID1"]) != 0)
+            {
+                <tr>
+                    <td>
+                        @Context.Request.Cookies["ProID1"]
+                    </td>
+                    <td>
+                        @Context.Request.Cookies["PA1"]
+                    </td>
+                </tr>
+            }
+            @if (int.Parse(@Context.Request.Cookies["ProID2"]) != 0)
+            {
+                <tr>
+                    <td>
+                        @Context.Request.Cookies["ProID2"]
+                    </td>
+                    <td>
+                        @Context.Request.Cookies["PA2"]
+                    </td>
+                </tr>
+            }
+            @if (int.Parse(@Context.Request.Cookies["ProID3"]) != 0)
+            {
+                <tr>
+                    <td>
+                        @Context.Request.Cookies["ProID3"]
+                    </td>
+                    <td>
+                        @Context.Request.Cookies["PA3"]
+                    </td>
+                </tr>
+            }
+            @if (int.Parse(@Context.Request.Cookies["ProID4"]) != 0)
+            {
+                <tr>
+                    <td>
+                        @Context.Request.Cookies["ProID4"]
+                    </td>
+                    <td>
+                        @Context.Request.Cookies["PA4"]
+                    </td>
+                </tr>
+            }
+            @if (int.Parse(@Context.Request.Cookies["ProID5"]) != 0)
+            {
+                <tr>
+                    <td>
+                        @Context.Request.Cookies["ProID5"]
+                    </td>
+                    <td>
+                        @Context.Request.Cookies["PA5"]
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (int.Parse(@Context.Request.Cookies["ProID1"]) != 0 || int.Parse(@Context.Request.Cookies["ProID2"]) != 0 || int.Parse(@Context.Request.Cookies["ProID3"]) != 0 || int.Parse(@Context.Request.Cookies["ProID4"]) != 0 || int.Parse(@Context.Request.Cookies["ProID5"]) != 0)
+    {
+        @Html.ActionLink("Complete Order", "CompleteOrder")
+    }
+
+</div>
