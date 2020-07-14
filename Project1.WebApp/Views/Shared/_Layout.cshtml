@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Project1.WebApp</title>
+    <title >@ViewData["Title"] - Project1.WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    <header>
+<body style="background-color:lightgoldenrodyellow">
+    <header style=" color: orchid">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+            <div style=" background-color: lightgray; border-color: lightgreen; border: 5px solid yellow" class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Project1.WebApp</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -34,20 +34,20 @@
                 </div>
                 @if (Context.Request.Cookies["CustomerID"] != null)
                 {
-                    <p class="text-right">
+                    <p style=" font-size: 50px; font-style: italic; color:aqua">
                         Signed in as:  @Context.Request.Cookies["FirstName"] @Context.Request.Cookies["LastName"]
                     </p>
                 }
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div  class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style=" background-color: darkgoldenrod" class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - Project1.WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
