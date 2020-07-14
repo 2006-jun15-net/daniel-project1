@@ -70,10 +70,10 @@ INSERT INTO ProductEntity (Name, Price) VALUES
 		('Bean Bag', 1);
 
 INSERT INTO LocationEntity (Name, Address) VALUES
-		('Golden Spot', 'move to the end of the rainbow'),
-		('Shop of Dreams', 'head North, West, South, East'),
-		('Last Stop', 'go to the End of Time'),
-		('Great Adventure Gift Shop', 'travel through an epic quest');
+		('Golden Spot', 'Move to the end of the rainbow'),
+		('Shop of Dreams', 'Head North, West, South, East'),
+		('Last Stop', 'Go to the End of Time'),
+		('Great Adventure Gift Shop', 'Travel through an Epic Quest');
 
 
 		
