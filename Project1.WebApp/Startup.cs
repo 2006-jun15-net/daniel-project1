@@ -26,11 +26,12 @@ namespace Project1.WebApp
 
         public IConfiguration Configuration { get; }
 
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<Project01Context>(options =>
-                //options.UseSqlServer(Project01ContextFactory.connectionString));
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();

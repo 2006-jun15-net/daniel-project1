@@ -41,6 +41,11 @@ namespace Project1.WebApp.Controllers
             HttpContext.Response.Cookies.Append("ProID3", "0");
             HttpContext.Response.Cookies.Append("ProID4", "0");
             HttpContext.Response.Cookies.Append("ProID5", "0");
+            HttpContext.Response.Cookies.Append("PA1", "0");
+            HttpContext.Response.Cookies.Append("PA2", "0");
+            HttpContext.Response.Cookies.Append("PA3", "0");
+            HttpContext.Response.Cookies.Append("PA4", "0");
+            HttpContext.Response.Cookies.Append("PA5", "0");
             return View(viewModel);
         }
 
