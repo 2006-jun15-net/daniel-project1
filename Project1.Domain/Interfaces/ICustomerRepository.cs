@@ -14,5 +14,7 @@ namespace Project1.Domain
         void Create(Customer customer);
 
         void Update(Customer customer);
+        
+        IEnumerable<Customer> GetAll();
     }
 }

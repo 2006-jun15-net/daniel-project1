@@ -68,5 +68,12 @@ namespace Project1.Data
             _context.Entry(currentEntity).CurrentValues.SetValues(newEntity);
             _context.SaveChanges();
         }
+
+        public IEnumerable<Customer> GetAll()
+        {
+            var entities = _context.CustomerEntity.ToList();
+
+            return (IEnumerable<Customer>)entities.Select(e => new Location(e.CustomerId, e.FirstName, e.LastName));
+        }
     }
 }

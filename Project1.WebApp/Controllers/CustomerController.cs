@@ -13,13 +13,14 @@ namespace Project1.WebApp.Controllers
     {
         private readonly ICustomerRepository _customerRepo;
         private readonly IOrderHistoryRepository _orderhistoryRepo;
-
+      
 
         public CustomerController(ICustomerRepository customerRepository, IOrderHistoryRepository orderHistoryRepo)
         {
             _customerRepo = customerRepository ?? throw new ArgumentNullException(nameof(customerRepository));
             _orderhistoryRepo = orderHistoryRepo ?? throw new ArgumentNullException(nameof(orderHistoryRepo));
         }
+       
         public IActionResult Index([FromQuery] string search = "")
         {
 
